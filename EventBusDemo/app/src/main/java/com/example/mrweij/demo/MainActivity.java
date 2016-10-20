@@ -40,6 +40,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        MessageMode mMessageMode = EventBus.getDefault().getStickyEvent(MessageMode.class);
+        if (mMessageMode != null) {
+            getMessageModeToast(mMessageMode);
+            EventBus.getDefault().removeStickyEvent(MessageMode.class);
+        }
     }
 
     @Override

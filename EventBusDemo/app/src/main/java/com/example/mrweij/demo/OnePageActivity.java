@@ -42,7 +42,6 @@ public class OnePageActivity extends Activity {
                 Looper.loop();
             }
         }).start();
-
     }
 
     private View.OnClickListener mBtSendMsgOnClickListener = new View.OnClickListener() {
@@ -50,6 +49,7 @@ public class OnePageActivity extends Activity {
         public void onClick(View v) {
             EventBus.getDefault().post(new MessageMode("MessageMode"));
             EventBus.getDefault().post(new OtherMessageMode(01));
+            EventBus.getDefault().postSticky(new MessageMode("Sticky MessageMode"));
         }
     };
 
@@ -65,7 +65,7 @@ public class OnePageActivity extends Activity {
         EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    @Subscribe(threadMode = ThreadMode.BACKGROUND, priority = 0)
     public void getOtherMessageMode(OtherMessageMode mOtherMessageMode) {
 //        Looper.prepare();
         Log.i("Wj", "getOtherMessageMode: ");
