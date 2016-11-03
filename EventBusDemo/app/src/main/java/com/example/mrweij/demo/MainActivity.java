@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends Activity {
+    private static final String TAG = "tw";
     private Context mContext;
     private TextView mTextView;
     private TextView mButton;
@@ -56,13 +57,13 @@ public class MainActivity extends Activity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getMessageMode(MessageMode mMessageMode) {
-        Log.i("Wj", "getMessageMode: ");
+        Log.i(TAG, "getMessageMode: ");
         mTextView.setText(mMessageMode.getmMessage());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getMessageModeToast(MessageMode mMessageMode) {
-        Log.i("Wj", "getMessageModeToast: ");
+        Log.i(TAG, "getMessageModeToast: ");
         Toast.makeText(mContext, mMessageMode.getmMessage(), Toast.LENGTH_LONG).show();
     }
 }

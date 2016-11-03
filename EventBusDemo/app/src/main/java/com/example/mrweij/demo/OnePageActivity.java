@@ -3,7 +3,6 @@ package com.example.mrweij.demo;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +17,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class OnePageActivity extends Activity {
+    private static final String TAG = "tw";
     private Context mContext;
     private TextView mTvMsgText;
     private Button mBtSendMsg;
@@ -31,18 +31,8 @@ public class OnePageActivity extends Activity {
         mBtSendMsg = (Button) findViewById(R.id.bt_onepage_sendmsg);
         mBtSendMsg.setOnClickListener(mBtSendMsgOnClickListener);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                Log.i("Wj", "run: Looper.myLooper() == Looper.getMainLooper() " + (Looper.myLooper() == Looper.getMainLooper())
-                        + " myLooperId: " + (Looper.myLooper().getThread().getId())
-                        + " mainLooperId: " + (Looper.getMainLooper().getThread().getId()));
-                mTvMsgText.setText("Thread");
-                Looper.loop();
-            }
-        }).start();
     }
+
 
     private View.OnClickListener mBtSendMsgOnClickListener = new View.OnClickListener() {
         @Override
@@ -68,11 +58,12 @@ public class OnePageActivity extends Activity {
     @Subscribe(threadMode = ThreadMode.BACKGROUND, priority = 0)
     public void getOtherMessageMode(OtherMessageMode mOtherMessageMode) {
 //        Looper.prepare();
-        Log.i("Wj", "getOtherMessageMode: ");
-//        Log.i("Wj", "run: Looper.myLooper() == Looper.getMainLooper() " + (Looper.myLooper() == Looper.getMainLooper())
+        Log.i(TAG, "getOtherMessageMode: ");
+//        Log.i(TAG, "run: Looper.myLooper() == Looper.getMainLooper() " + (Looper.myLooper() == Looper.getMainLooper())
 //                + " myLooperId: " + (Looper.myLooper().getThread().getId())
 //                + " mainLooperId: " + (Looper.getMainLooper().getThread().getId()));
-        mTvMsgText.setText(String.valueOf(mOtherMessageMode.getmOtherMessage()));
+//        mTvMsgText.setText(String.valueOf(mOtherMessageMode.getmOtherMessage()));
+        mTvMsgText.setText("ninininini");
 //        Looper.loop();
     }
 
