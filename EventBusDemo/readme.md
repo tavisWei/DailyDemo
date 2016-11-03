@@ -10,23 +10,23 @@
 >**EventBus in 3 steps**
 >
 >**Define events:**
->```
+>```java
 >public static class MessageEvent { /* Additional fields if needed */ }
 >Prepare subscribers: Declare and annotate your subscribing method, optionally >specify a thread mode:
 >```
->```
+>```java
 >@Subscribe(threadMode = ThreadMode.MAIN)  
 >public void onMessageEvent(MessageEvent event) {/* Do something */};
 >Register and unregister your subscriber. For example on Android, activities and >fragments should usually register according to their life cycle:
 >```
->```
+>```java
 >@Override
 >public void onStart() {
 >    super.onStart();
 >    EventBus.getDefault().register(this);
 >}
 >```
->```
+>```java
 >@Override
 >public void onStop() {
 >    super.onStop();
@@ -34,7 +34,7 @@
 >}
 >```
 >**Post events:**
->```
+>```java
 >EventBus.getDefault().post(new MessageEvent());
 >```
 
@@ -43,7 +43,7 @@
 
 **Summary in this demo:**
 1. When you use :
-```
+```java
 EventBus.getDefault().post(new MessageEvent());
 ```
 to post your event,received method only have ``one`` parameter so that the post method have ``one`` parameter too.
@@ -57,7 +57,7 @@ For example:
 EventBus.getDefault().postSticky(new MessageMode("Sticky MessageMode"));
 ```
 When you go back to other Activity
-```
+```java
     @Override
     protected void onStart() {
         super.onStart();
